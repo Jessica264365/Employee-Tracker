@@ -273,15 +273,11 @@ function addEmployee() {
 function addRole() {
   connection.query("SELECT * FROM employeeinfo_db.department;", (err, res) => {
     if (err) throw err;
-    // select all from role
-    // connectio.query department table
     let department_ids = res.map(({ id, name }) => ({
       name: name,
       value: id,
     }));
-    // ((department) => department.id);
-    console.log(department_ids);
-    // console.table(res);
+   
     inquirer
       .prompt([
         {
@@ -342,3 +338,4 @@ function addDepartment() {
       );
     });
 }
+// Function for exiting the application
