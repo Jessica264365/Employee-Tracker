@@ -153,61 +153,61 @@ function updateManager() {
     manager_id: null,
     id: null,
   };
-  connection.query("SELECT * FROM employee; ", (err, res) => {
-    if (err) throw err;
-    let employee_ids = res.map(({ id, first_name }) => ({
-      name: first_name,
-      value: id,
-    }));
-
-    console.table(res);
-    inquirer
-      .prompt({
-        type: "list",
-        name: "employee_id",
-        message: "What is the employee's name?",
-        choices: employee_ids,
-      })
-      .then((data) => {
-        console.log(data);
-        update_manager.id = data.employee_id;
-        connection.query(
-          "SELECT first_name, id FROM employee WHERE manager_id IS null;",
-          // "SELECT DISTINCT managers.id, managers.first_name, managers.last_name FROM employee JOIN employee as managers ON employee.manager_id = managers.id ORDER BY managers.last_name ASC;",
-          (err, res) => {
-            if (err) throw err;
-            let manager_ids = res.map(({ id, first_name }) => ({
-              name: first_name,
-              value: id,
-            }));
-            inquirer
-              .prompt([
-                {
-                  type: "list",
-                  name: "newManager_id",
-                  message: "What is the new manager ID?",
-                  choices: manager_ids,
-                },
-              ])
-              .then((data) => {
-                update_manager.manager_id = data.newManager_id;
-                connection.query(
-                  "UPDATE employee SET ? WHERE ?",
-                  [
-                    { manager_id: update_manager.manager_id },
-                    { id: update_manager.id },
-                  ],
-                  (err, res) => {
-                    if (err) throw err;
-                    console.log(res.affectedRows + " has been updated!\n");
-                    employeeQuesInit();
-                  }
-                );
-              });
-          }
-        );
-      });
-  });
+  connection.query(
+    "SELECT * FROM employee WHERE manager_id IS NOT null; ",
+    (err, res) => {
+      if (err) throw err;
+      let employee_ids = res.map(({ id, first_name }) => ({
+        name: first_name,
+        value: id,
+      }));
+      inquirer
+        .prompt({
+          type: "list",
+          name: "employee_id",
+          message: "What is the employee's name?",
+          choices: employee_ids,
+        })
+        .then((data) => {
+          console.log(data);
+          update_manager.id = data.employee_id;
+          connection.query(
+            "SELECT first_name, id FROM employee WHERE manager_id IS null;",
+            (err, res) => {
+              if (err) throw err;
+              let manager_ids = res.map(({ id, first_name }) => ({
+                name: first_name,
+                value: id,
+              }));
+              inquirer
+                .prompt([
+                  {
+                    type: "list",
+                    name: "newManager_id",
+                    message: "What is the new manager ID?",
+                    choices: manager_ids,
+                  },
+                ])
+                .then((data) => {
+                  update_manager.manager_id = data.newManager_id;
+                  connection.query(
+                    "UPDATE employee SET ? WHERE ?",
+                    [
+                      { manager_id: update_manager.manager_id },
+                      { id: update_manager.id },
+                    ],
+                    (err, res) => {
+                      if (err) throw err;
+                      console.log(res.affectedRows + " has been updated!\n");
+                      employeeQuesInit();
+                    }
+                  );
+                });
+            }
+          );
+        });
+    }
+  );
 }
 // Function for adding employees
 function addEmployee() {

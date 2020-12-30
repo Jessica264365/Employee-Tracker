@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 - View the GitHub [repository](https://github.com/Jessica264365/Employee-Tracker)
-- View a video of the [application in action]()
+- View a video of the [application in action](https://drive.google.com/file/d/1g1kwG3j2CnWHpKJqzDSiKIXNbI_lK90x/view)
 
 ## Table of Contents
 
@@ -21,7 +21,9 @@
 
 ## About the Project
 
-This is a simple content management system command line application. Users can add an employee, create a new department or role and edit those employee roles should they need to. This application also allows the user to view all employees, view all departments and view all roles. The console.table function is used to display all the employees, roles and departments in an easy to view fashion. If an employee switches roles or managers there is an option to update that information in the database. Once the user is done with the application they can select the exit option which will end the application. This application comes with the employeetracker.sql which sets up the database in MySQL. There is also some seed data available if it is needed. Here is a live video demonstration of the application in action.
+This is a simple content management system command line application. Users can add an employee, create a new department or role and edit those employee roles should they need to. This application also allows the user to view all employees, view all departments and view all roles. The console.table function is used to display all the employees, roles and departments in an easy to view fashion. If an employee switches roles or managers there is an option to update that information in the database. Once the user is done with the application they can select the exit option which will end the application. This application comes with the employeetracker.sql which sets up the database in MySQL. There is also some seed data available if it is needed. Refer to the top for a video of the application in action.
+
+![](./images/example1.PNG) ![](./images/example2.PNG)
 
 ## Start Your Own
 
