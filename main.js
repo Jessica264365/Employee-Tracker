@@ -172,7 +172,8 @@ function updateManager() {
         console.log(data);
         update_manager.id = data.employee_id;
         connection.query(
-          "SELECT DISTINCT managers.id, managers.first_name, managers.last_name FROM employee JOIN employee as managers ON employee.manager_id = managers.id ORDER BY managers.last_name ASC;",
+          "SELECT first_name, id FROM employee WHERE manager_id IS null;",
+          // "SELECT DISTINCT managers.id, managers.first_name, managers.last_name FROM employee JOIN employee as managers ON employee.manager_id = managers.id ORDER BY managers.last_name ASC;",
           (err, res) => {
             if (err) throw err;
             let manager_ids = res.map(({ id, first_name }) => ({
