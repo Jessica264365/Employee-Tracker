@@ -71,8 +71,8 @@ function employeeQuesInit() {
         case "Update employee manager":
           updateManager();
           break;
-        // case "Exit":
-        default:
+        case "Exit":
+          exit();
           break;
       }
     });
@@ -241,11 +241,18 @@ function addEmployee() {
               message: "What is the employee's role?",
               choices: role_ids,
             },
-
+            {
+              type: "list",
+              name: "isManager",
+              message: "Is the employee a manager?",
+              choices: ["Yes", "No"],
+            },
+            // if the employee isn't a manager the user is asked who the manager will be
             {
               type: "list",
               name: "manager_id",
               message: "Who is the employee's manager?",
+              when: (answers) => answers.isManager === "No",
               choices: manager_ids,
             },
           ])
@@ -277,7 +284,7 @@ function addRole() {
       name: name,
       value: id,
     }));
-   
+
     inquirer
       .prompt([
         {
@@ -339,3 +346,6 @@ function addDepartment() {
     });
 }
 // Function for exiting the application
+function exit() {
+  process.exit();
+}
