@@ -14,12 +14,13 @@ const connection = mysql.createConnection({
 
   // Your password
   password: "@gurdy135264365!",
+
+  // database name
   database: "employeeInfo_db",
 });
 
 connection.connect(function (err) {
   if (err) throw err;
-
   employeeQuesInit();
 });
 

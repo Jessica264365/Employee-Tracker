@@ -8,9 +8,8 @@ VALUES ("Beth", "Warren", 1, 2);
 INSERT INTO role (title, salary, department_id)
 VALUES ("Dog Walker", 50000, 1)
 INSERT INTO role (title, salary, department_id)
-VALUES ("Dog Walker Manager", 70000, 1)
+VALUES ("Doggie Daycare Manager", 70000, 1)
 INSERT INTO role (title, salary, department_id)
 VALUES ("Dog Washer", 20000, 1)
 INSERT INTO department (name)
 VALUES ("Doggie Daycare")
-
